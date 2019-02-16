@@ -2,8 +2,11 @@ import re
 import sys
 from data_types import Annotation, split_var, is_var_char
 
+RESERVED = ["abstract", "continue", "for", "new", "switch", "assert", "default", "goto", "package", "synchronized", "boolean", "do", "if", "private", "this", "break", "double", "implements", "protected", "throw", "byte", "else", "import", "public", "throws", "case", "enum", "instanceof", "return", "transient", "catch", "extends", "int", "short", "try", "char", "final", "interface", "static", "void", "class", "finally", "long", "strictfp", "volatile", "const", "float", "native", "super", "while"]
 
 def validate(token):
+    if token in RESERVED:
+        return False
     for char in token:
         if not is_var_char(char):
             return False
