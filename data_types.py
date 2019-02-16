@@ -3,11 +3,13 @@ class Annotation:
         self.file_name = file_name
         self.groups = groups  # a list of lists
 
+
 def is_var_char(c):
     return ord('a') <= ord(c) <= ord('z') or \
            ord('A') <= ord(c) <= ord('Z') or \
            ord('0') <= ord(c) <= ord('9') or \
            ord(c) == ord('_')
+
 
 def split_var(s):
     result = []
