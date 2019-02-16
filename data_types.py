@@ -23,9 +23,10 @@ def split_var(s):
                 result.append(curr_var)
                 curr_var = ""
         else:
-            result.append(curr_var)
-            result.append(str(c))
+            if len(curr_var) > 0:
+                result.append(curr_var)
             curr_var = ""
+            result.append(str(c))
     if len(curr_var) > 0:
         result.append(curr_var)
     return result
