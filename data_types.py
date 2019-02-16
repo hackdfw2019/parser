@@ -1,5 +1,4 @@
 class ComputedFile:
-    def __init__(name, sets):
+    def __init__(self, name, sets):
         self.name = name
         self.sets = sets
-
