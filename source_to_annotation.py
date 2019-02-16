@@ -1,6 +1,8 @@
 import re
 import sys
 from data_types import Annotation, split_var, is_var_char
+import pickle
+import os
 
 RESERVED = ["abstract", "continue", "for", "new", "switch", "assert", "default", "goto", "package", "synchronized", "boolean", "do", "if", "private", "this", "break", "double", "implements", "protected", "throw", "byte", "else", "import", "public", "throws", "case", "enum", "instanceof", "return", "transient", "catch", "extends", "int", "short", "try", "char", "final", "interface", "static", "void", "class", "finally", "long", "strictfp", "volatile", "const", "float", "native", "super", "while"]
 
@@ -32,3 +34,11 @@ def source_to_annotation(input_file_name):
         i += 1
 
     return Annotation(input_file_name, list(results.values()))
+
+
+def generate_annotations():
+    file_names = os.listdir('samples/')
+    annotations = []
+    for file_name in file_names:
+        annotations.append(source_to_annotation(file_name))
+    pickle.dump(annotations, open("annotations.pickle", 'wb'))
