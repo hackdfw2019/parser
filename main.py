@@ -1,0 +1,5 @@
+from source_to_annotation import generate_annotations
+from annotation_to_madlib import annotations_to_madlibs
+
+generate_annotations()
+annotations_to_madlibs()

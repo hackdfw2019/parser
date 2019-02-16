@@ -1,4 +1,5 @@
 import random
+import pickle
 from data_types import split_var
 
 var_chars = "abcdefghijklmnopqrstuvwxyz0123456789_____"
@@ -11,9 +12,16 @@ def random_var():
     return result
 
 
+def annotations_to_madlibs():
+    annotations = pickle.load(open("annotations.pickle", 'rb'))
+    for annotation in annotations:
+        annotation_to_madlib(annotation)
+
+
+
 def annotation_to_madlib(annotation):
     file_lines = []
-    fin = open(annotation.file_name)
+    fin = open("samples/" + annotation.file_name)
     for line in fin:
         file_lines.append(split_var(line))
     for group in annotation.groups:
