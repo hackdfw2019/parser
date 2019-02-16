@@ -10,7 +10,7 @@ def is_var_char(c):
            ord(c) == ord('-') or ord(c) == ord('_')
 
 def is_whitespace(c):
-    return ("" + c).isspace()
+    return str(c).isspace()
 
 def split_var(s):
     result = []
@@ -18,9 +18,13 @@ def split_var(s):
     for c in list(s):
         if is_var_char(c):
             curr_var += c
-        elif not is_whitespace(c):
+        elif is_whitespace(c):
+            if len(curr_var) > 0:
+                result.append(curr_var)
+                curr_var = ""
+        else:
             result.append(curr_var)
-            result.append("" + c)
+            result.append(str(c))
             curr_var = ""
     if len(curr_var) > 0:
         result.append(curr_var)
