@@ -15,7 +15,7 @@ def validate(token):
 
 def source_to_annotation(input_file_name):
     # open the file, and read the lines into an array of strings
-    lines = open(input_file_name).readlines()
+    lines = open('samples/' + input_file_name).readlines()
     results = {}
 
     i = 0
