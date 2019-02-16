@@ -16,7 +16,7 @@ def validate(token):
 def source_to_annotation(input_file_name):
     # open the file, and read the lines into an array of strings
     lines = open(input_file_name).readlines()
-    results = []
+    results = {}
 
     i = 0
     while i < len(lines):
@@ -25,7 +25,10 @@ def source_to_annotation(input_file_name):
             if j > 0 and (line[j] == '/' and line[j - 1] == '/'):
                 break
             if validate(token):
-                results.append({str(token): (i, j)})
+                if token in results:
+                    results[token].append((i, j))
+                else:
+                    results[token] = [(i, j)]
         i += 1
 
-    return Annotation(input_file_name, results)
+    return Annotation(input_file_name, list(results.values()))

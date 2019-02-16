@@ -1,7 +1,7 @@
 class Annotation:
-    def __init__(self, name, sets):
-        self.name = name
-        self.sets = sets
+    def __init__(self, file_name, groups):
+        self.file_name = file_name
+        self.groups = groups  # a list of lists
 
 def is_var_char(c):
     return ord('a') <= ord(c) <= ord('z') or \
