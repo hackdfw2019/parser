@@ -19,7 +19,7 @@ def source_to_annotation(input_file_name):
     while i < len(lines):
         line = split_var(lines[i])
         for j, token in enumerate(line):
-            if re.search('^//', token):
+            if j > 0 and (line[j] == '/' and line[j - 1] == '/'):
                 break
             if validate(token):
                 results.append({str(token): (i, j)})
