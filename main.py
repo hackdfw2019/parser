@@ -13,6 +13,15 @@ for filename in os.listdir('samples/'):
     to_write = open('samples/' + filename, 'w')
     to_write.write(text)
 
-
 generate_annotations()
 annotations_to_madlibs()
+
+for filename in os.listdir('madlibs/'):
+    texts = open('madlibs/' + filename, 'r').readlines()
+    result = []
+    for text in texts:
+        if not (not text or text.isspace()):
+            result.append(text)
+    result_string = ''.join(result)
+    to_write = open('madlibs/' + filename, 'w')
+    to_write.write(result_string)
