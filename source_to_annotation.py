@@ -1,3 +1,5 @@
+#!/usr/sbin/python
+
 import re
 import sys
 from data_types import Annotation, split_var, is_var_char
@@ -36,9 +38,8 @@ def source_to_annotation(input_file_name):
     return Annotation(input_file_name, list(results.values()))
 
 
-def generate_annotations():
-    file_names = os.listdir('samples/')
-    annotations = []
-    for file_name in file_names:
-        annotations.append(source_to_annotation(file_name))
-    pickle.dump(annotations, open("annotations.pickle", 'wb'))
+file_names = os.listdir('samples/')
+annotations = []
+for file_name in file_names:
+    annotations.append(source_to_annotation(file_name))
+pickle.dump(annotations, open("annotations.pickle", 'wb'))
