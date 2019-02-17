@@ -1,7 +1,8 @@
 class Annotation:
-    def __init__(self, file_name, groups):
+    def __init__(self, file_name, groups, reverse):
         self.file_name = file_name
         self.groups = groups  # a list of lists
+        self.reverse = reverse
 
 
 def is_var_char(c):

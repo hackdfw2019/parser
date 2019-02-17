@@ -34,8 +34,23 @@ def source_to_annotation(input_file_name):
                 else:
                     results[token] = [(i, j)]
         i += 1
-
-    return Annotation(input_file_name, list(results.values()))
+    reverse = {}
+    groups = list(results.values())
+    var = 0
+    while var < len(groups):
+        for loc in groups[var]:
+            line = loc[0]
+            col = loc[1]
+            if line in reverse:
+                if var in reverse[line]:
+                    reverse[line][var].append(col)
+                else:
+                    reverse[line][var] = [col]
+            else:
+                reverse[line] = []
+                reverse[line][var] = [col]
+        var += 1
+    return Annotation(input_file_name, groups, reverse)
 
 
 def generate_annotations():
