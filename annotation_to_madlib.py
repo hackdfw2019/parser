@@ -1,7 +1,7 @@
 import random
 import pickle
 import os
-from .data_types import split_var
+from data_types import split_var
 
 var_chars = "abcdefghijklmnopqrstuvwxyz0123456789__"
 med_words = open(os.path.join(os.path.dirname(__file__), "dict_med.txt"), 'r').readlines()
