@@ -7,9 +7,13 @@ med_words = open("dict_med.txt", 'r').readlines()
 sho_words = open("dict_sho.txt", 'r').readlines()
 
 def random_words():
-    rando = random.randint(0, 11)
-    if(rando >= 3):
+    rando = random.randint(0, 16)
+    if(rando >= 8):
         return random.choice(med_words).rstrip()
+    elif(rando >= 6):
+        return random.choice(med_words).rstrip().capitalize()
+    elif(rando >= 2):
+        return random.choice(sho_words).rstrip() + (random.choice(med_words).rstrip()).capitalize()
     else:
         return random.choice(sho_words).rstrip() + "_" + random.choice(med_words).rstrip()
 
@@ -37,8 +41,10 @@ def annotation_to_madlib(annotation):
         for loc in group:
             file_lines[loc[0]][loc[1]] = var_name
     result = ""
+    fout = open("madlibs/" + annotation.file_name, 'w')
     for file_line in file_lines:
         for token in file_line:
             result += token
+    fout.write(result)
     return result
 
