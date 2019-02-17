@@ -19,7 +19,7 @@ def validate(token):
 
 def source_to_annotation(input_file_name):
     # open the file, and read the lines into an array of strings
-    lines = open('samples/' + input_file_name).readlines()
+    lines = open(os.path.join(os.path.dirname(__file__), 'samples', input_file_name)).readlines()
     results = {}
 
     i = 0
@@ -42,4 +42,4 @@ file_names = os.listdir('samples/')
 annotations = []
 for file_name in file_names:
     annotations.append(source_to_annotation(file_name))
-pickle.dump(annotations, open("annotations.pickle", 'wb'))
+pickle.dump(annotations, open(os.path.join(os.path.dirname(__file__), "annotations.pickle"), 'wb'))

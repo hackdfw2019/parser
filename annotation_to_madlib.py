@@ -1,10 +1,11 @@
 import random
 import pickle
-from data_types import split_var
+import os
+from .data_types import split_var
 
 var_chars = "abcdefghijklmnopqrstuvwxyz0123456789__"
-med_words = open("dict_med.txt", 'r').readlines()
-sho_words = open("dict_sho.txt", 'r').readlines()
+med_words = open(os.path.join(os.path.dirname(__file__), "dict_med.txt"), 'r').readlines()
+sho_words = open(os.path.join(os.path.dirname(__file__), "dict_sho.txt"), 'r').readlines()
 
 def random_words():
     rando = random.randint(0, 16)
@@ -26,14 +27,14 @@ def random_var():
 
 
 def annotations_to_madlibs():
-    annotations = pickle.load(open("annotations.pickle", 'rb'))
+    annotations = pickle.load(open(os.path.join(os.path.dirname(__file__), "annotations.pickle"), 'rb'))
     for annotation in annotations:
         annotation_to_madlib(annotation)
 
 
 def annotation_to_madlib(annotation):
     file_lines = []
-    fin = open("samples/" + annotation.file_name)
+    fin = open(os.path.join(os.path.dirname(__file__), "samples", annotation.file_name))
     for line in fin:
         file_lines.append(split_var(line))
     for group in annotation.groups:
