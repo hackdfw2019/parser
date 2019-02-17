@@ -19,7 +19,10 @@ def split_var(s):
             curr_var += c
         else:
             if len(curr_var) > 0:
-                result.append(curr_var)
+                if curr_var == "import" or curr_var == "package":
+                    return ""
+                else:
+                    result.append(curr_var)
             curr_var = ""
             result.append(str(c))
     if len(curr_var) > 0:
