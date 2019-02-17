@@ -28,8 +28,8 @@ def annotation_to_madlib(annotation):
         var_name = random_var()
         for loc in group:
             file_lines[loc[0]][loc[1]] = var_name
-    fout = open("madlibs/" + annotation.file_name, "wt")
+    result = ""
     for file_line in file_lines:
         for token in file_line:
-            fout.write(token)
-        fout.write("\n")
+            result += token
+    return result
