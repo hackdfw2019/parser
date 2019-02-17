@@ -38,8 +38,9 @@ def source_to_annotation(input_file_name):
     return Annotation(input_file_name, list(results.values()))
 
 
-file_names = os.listdir('samples/')
-annotations = []
-for file_name in file_names:
-    annotations.append(source_to_annotation(file_name))
-pickle.dump(annotations, open(os.path.join(os.path.dirname(__file__), "annotations.pickle"), 'wb'))
+def generate_annotations():
+    file_names = os.listdir('samples/')
+    annotations = []
+    for file_name in file_names:
+        annotations.append(source_to_annotation(file_name))
+    pickle.dump(annotations, open(os.path.join(os.path.dirname(__file__), "annotations.pickle"), 'wb'))
