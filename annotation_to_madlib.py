@@ -1,7 +1,7 @@
 import random
 import pickle
 import os
-from data_types import split_var
+from data_types import split_var, Annotation
 
 var_chars = "abcdefghijklmnopqrstuvwxyz0123456789__"
 med_words = open(os.path.join(os.path.dirname(__file__), "dict_med.txt"), 'r').readlines()
@@ -49,3 +49,18 @@ def annotation_to_madlib(annotation):
     fout.write(result)
     return result
 
+def get_candidates(annotation, line, count):
+    print(line)
+    if line in annotation.reverse:
+        reverse = annotation.reverse[line]
+        candidates = []
+        for i in range(count):
+            file_line = split_var(open(os.path.join(os.path.dirname(__file__), "madlibs", annotation.file_name)).readlines()[line])
+            for group in reverse:
+                var_name = random_words()
+                for loc in reverse[group]:
+                    file_line[loc] = var_name
+                    candidates.append(file_line)
+        return candidates
+    else:
+        return [open(os.path.join(os.path.dirname(__file__), "madlibs", annotation.file_name)).readlines()[line]]

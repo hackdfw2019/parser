@@ -34,23 +34,22 @@ def source_to_annotation(input_file_name):
                 else:
                     results[token] = [(i, j)]
         i += 1
-    reverse = {}
+
     groups = list(results.values())
-    var = 0
-    while var < len(groups):
-        for loc in groups[var]:
-            line = loc[0]
-            col = loc[1]
-            if line in reverse:
-                if var in reverse[line]:
-                    reverse[line][var].append(col)
+    reverse_index = {}
+    for var, group in enumerate(groups):
+        for location in group:
+            line = location[0]
+            col = location[1]
+            if line in reverse_index:
+                if var in reverse_index[line]:
+                    reverse_index[line][var].append(col)
                 else:
-                    reverse[line][var] = [col]
+                    reverse_index[line][var] = [col]
             else:
-                reverse[line] = []
-                reverse[line][var] = [col]
-        var += 1
-    return Annotation(input_file_name, groups, reverse)
+                reverse_index[line] = {}
+                reverse_index[line][var] = [col]
+    return Annotation(input_file_name, groups, reverse_index)
 
 
 def generate_annotations():
