@@ -6,7 +6,7 @@ var_chars = "abcdefghijklmnopqrstuvwxyz0123456789__"
 med_words = open("dict_med.txt", 'r').readlines()
 sho_words = open("dict_sho.txt", 'r').readlines()
 
-def random_words(): # returns a 5-8 character word
+def random_words():
     rando = random.randint(0, 11)
     if(rando >= 3):
         return random.choice(med_words).rstrip()
