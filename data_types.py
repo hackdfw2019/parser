@@ -17,10 +17,6 @@ def split_var(s):
     for c in list(s):
         if is_var_char(c):
             curr_var += c
-        elif str(c).isspace():
-            if len(curr_var) > 0:
-                result.append(curr_var)
-            curr_var = ""
         else:
             if len(curr_var) > 0:
                 result.append(curr_var)

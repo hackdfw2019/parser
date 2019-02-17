@@ -31,5 +31,5 @@ def annotation_to_madlib(annotation):
     fout = open("madlibs/" + annotation.file_name, "wt")
     for file_line in file_lines:
         for token in file_line:
-            fout.write(token + " ")
+            fout.write(token)
         fout.write("\n")
